@@ -8,40 +8,49 @@ namespace Consumer
     {
         public void ReceiveMessage(Action<string> onMessageReceivedAction)
         {
-            try
+            while (true)
             {
-                var factory = new ConnectionFactory { HostName = "rabbit" };
-                using var connection = factory.CreateConnection();
-                using var channel = connection.CreateModel();
-
-                channel.QueueDeclare(queue: "protocols",
-                                     durable: false,
-                                     exclusive: false,
-                                     autoDelete: false,
-                                     arguments: null);
-
-                Console.WriteLine(" [*] Waiting for messages.");
-
-                var consumer = new EventingBasicConsumer(channel);
-                consumer.Received += (model, ea) =>
+                try
                 {
-                    var body = ea.Body.ToArray();
-                    var message = Encoding.UTF8.GetString(body);
-                    Console.WriteLine($" [x] Received {message}");
+                    Console.WriteLine(" Tentando conexão com o Rabbit...");
 
-                    onMessageReceivedAction.Invoke(message);
-                };
-                channel.BasicConsume(queue: "protocols",
-                                     autoAck: true,
-                                     consumer: consumer);
+                    var factory = new ConnectionFactory { HostName = "rabbit" };
+                    using var connection = factory.CreateConnection();
+                    using var channel = connection.CreateModel();
 
-                Console.ReadLine();
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
+                    Console.WriteLine(" Conectado!");
 
-                throw;
+                    channel.QueueDeclare(queue: "protocols",
+                                         durable: false,
+                                         exclusive: false,
+                                         autoDelete: false,
+                                         arguments: null);
+
+                    Console.WriteLine(" Aguardando mensagens...");
+
+                    var consumer = new EventingBasicConsumer(channel);
+                    consumer.Received += (model, ea) =>
+                    {
+                        var body = ea.Body.ToArray();
+                        var message = Encoding.UTF8.GetString(body);
+                        Console.WriteLine($" Mensagem Recebida: {message}");
+
+                        onMessageReceivedAction.Invoke(message);
+                    };
+                    channel.BasicConsume(queue: "protocols",
+                                         autoAck: true,
+                                         consumer: consumer);
+
+                    Console.ReadLine();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(" ERRO: " + ex.Message);
+
+                    Console.WriteLine(" Aguardando mais 5 segundos para tentar reconectar...");
+
+                    Thread.Sleep(5000);
+                }
             }
         }
     }

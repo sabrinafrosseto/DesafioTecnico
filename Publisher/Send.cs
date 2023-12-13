@@ -9,12 +9,37 @@ namespace Publisher
     {
         public void SendMessage(Protocol protocol)
         {
+            var connected = false;
+
+            IConnection connection = null;
+
+            Console.WriteLine(" Tentando conexão com o Rabbit...");
+
+            while (!connected)
             {
-                var factory = new ConnectionFactory { HostName = "rabbit" };
+                try
+                {
+                    var factory = new ConnectionFactory { HostName = "rabbit" };
 
-                using var connection = factory.CreateConnection();
+                    connection = factory.CreateConnection();
 
-                using var channel = connection.CreateModel();
+                    connected = true;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(" ERRO: " + ex.Message);
+
+                    Console.WriteLine(" Aguardando mais 5 segundos para tentar reconectar...");
+
+                    Thread.Sleep(5000);
+                }
+            }
+
+            Console.WriteLine(" Conectado!");
+
+            using (connection)
+            {
+                using var channel = connection!.CreateModel();
 
                 channel.QueueDeclare(queue: "protocols",
                          durable: false,
@@ -22,7 +47,7 @@ namespace Publisher
                          autoDelete: false,
                          arguments: null);
 
-                var message = JsonSerializer.Serialize(protocol); 
+                var message = JsonSerializer.Serialize(protocol);
 
                 var body = Encoding.UTF8.GetBytes(message);
 
@@ -31,7 +56,7 @@ namespace Publisher
                                      basicProperties: null,
                                      body: body);
 
-                Console.WriteLine($" [x] Sent {message}");
+                Console.WriteLine($" Mensagem enviada: {message}");
             }
         }
     }
