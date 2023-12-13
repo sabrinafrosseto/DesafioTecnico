@@ -5,7 +5,7 @@ try
 {
     var send = new Send();
 
-    for (int i = 0; i < 1; i++)
+    for (int i = 0; i < 15; i++)
     {
         var protocol = CreateProtocolModel();
         send.SendMessage(protocol);
@@ -27,11 +27,9 @@ static Protocol CreateProtocolModel()
     return new Protocol
     {
         ProtocolNumber = DateTime.Now.ToString("ddMMyyyyHHmmssfff"),
-        //ProtocolNumber = "06122023191004426",
-        DocumentVersion = "1",
+        DocumentVersion = CreateRandomNumber(1),
         CPF = CreateRandomNumber(11),
         PersonalId = CreateRandomNumber(8),
-        //PersonalId = "30844270",
         Name = "Name",
         MotherName = "MotherName",
         FatherName = "FatherName",
