@@ -1,4 +1,5 @@
-﻿using Domain.Entidades;
+﻿using Business;
+using Domain.Entidades;
 using Domain.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
@@ -17,6 +18,8 @@ namespace API.Controllers
 
         // GET: api/<ProtocolsController>
         [HttpGet]
+        [ProducesResponseType(200)]
+        [ProducesErrorResponseType(typeof(ApplicationException))]
         public List<Protocol> GetAll()
         {
             try
@@ -32,6 +35,8 @@ namespace API.Controllers
 
         // GET api/<ProtocolsController>/5
         [HttpGet("filter")]
+        [ProducesResponseType(200)]
+        [ProducesErrorResponseType(typeof(ApplicationException))]
         public IActionResult Get([FromQuery] string? protocolNumber, [FromQuery] string? cpf, [FromQuery] string? rg)
         {
             try
@@ -47,22 +52,20 @@ namespace API.Controllers
             }
         }
 
-        //// POST api/<ProtocolsController>
-        //[HttpPost]
-        //public void Post([FromBody] string value)
-        //{
-        //}
-
-        //// PUT api/<ProtocolsController>/5
-        //[HttpPut("{id}")]
-        //public void Put(int id, [FromBody] string value)
-        //{
-        //}
-
-        //// DELETE api/<ProtocolsController>/5
-        //[HttpDelete("{id}")]
-        //public void Delete(int id)
-        //{
-        //}
+        [HttpPost]
+        [ProducesResponseType(201)]
+        [ProducesErrorResponseType(typeof(ApplicationException))]
+        public IActionResult Create([FromBody] Protocol protocol)
+        {
+            try
+            {
+                _business.Create(protocol);
+                return Ok();
+            }
+            catch (ApplicationException e)
+            {
+                return BadRequest(e.Message);
+            }
+        }
     }
 }

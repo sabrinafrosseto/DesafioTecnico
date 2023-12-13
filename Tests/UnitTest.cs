@@ -19,6 +19,31 @@ namespace Tests
         }
 
         [TestMethod]
+        public void Create_SuccessOk()
+        {
+            // Arrange
+            var protocol = new Protocol
+            {
+                ProtocolNumber = "564789",
+                DocumentVersion = "1",
+                CPF = "12345678900",
+                PersonalId = "123456789",
+                Name = "John Doe",
+                Image = "image.jpg"
+            };
+
+            _mockData
+                .Setup(d => d.Find(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()))
+                .Returns(new List<Protocol> { });
+
+            // Act
+            _business.Create(protocol);
+
+            // Assert
+            _mockData.Verify(m => m.Create(It.IsAny<Protocol>()), Times.Once);
+        }
+
+        [TestMethod]
         [ExpectedException(typeof(ApplicationException))]
         public void Create_ThrowsForMissingProtocolNumber()
         {

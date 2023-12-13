@@ -1,14 +1,6 @@
 version: "3.8"
 
 services:
-  # teste:
-  #   image: mcr.microsoft.com/dotnet/runtime:6.0
-  #   container_name: teste
-  #   ports:
-  #     - 6000:6000
-  #   stdin_open: true
-  #   tty: true
-
   mysql:
     image: mysql:8.0
     ports:

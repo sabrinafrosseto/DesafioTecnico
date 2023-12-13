@@ -44,7 +44,7 @@ static string CreateRandomNumber(int size)
 
     for (int i = 0; i < size; i++)
     {
-        numbers[i] = (char)random.Next('0', '9' + 1);
+        numbers[i] = (char)random.Next('1', '9' + 1);
     }
 
     return new string(numbers);
