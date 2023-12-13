@@ -19,7 +19,8 @@ namespace API.Controllers
         // GET: api/<ProtocolsController>
         [HttpGet]
         [ProducesResponseType(200)]
-        [ProducesErrorResponseType(typeof(ApplicationException))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public List<Protocol> GetAll()
         {
             try
@@ -36,7 +37,8 @@ namespace API.Controllers
         // GET api/<ProtocolsController>/5
         [HttpGet("filter")]
         [ProducesResponseType(200)]
-        [ProducesErrorResponseType(typeof(ApplicationException))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public IActionResult Get([FromQuery] string? protocolNumber, [FromQuery] string? cpf, [FromQuery] string? rg)
         {
             try
@@ -54,7 +56,8 @@ namespace API.Controllers
 
         [HttpPost]
         [ProducesResponseType(201)]
-        [ProducesErrorResponseType(typeof(ApplicationException))]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(500)]
         public IActionResult Create([FromBody] Protocol protocol)
         {
             try

@@ -1,6 +1,12 @@
 version: "3.8"
 
 services:
+  rabbit:
+    image: rabbitmq:management
+    hostname: rabbit
+    ports:
+      - 5672:5672
+      - 15672:15672
   mysql:
     image: mysql:8.0
     ports:
@@ -8,14 +14,7 @@ services:
     hostname: mysql
     environment:
       MYSQL_ROOT_PASSWORD: dbpassword
-
-  rabbit:
-    image: rabbitmq:management
-    hostname: rabbit
-    ports:
-      - 5672:5672
-      - 15672:15672
-
+ 
   publisher:
     ports:
       - 5000:5000

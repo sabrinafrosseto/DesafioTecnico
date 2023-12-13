@@ -3,6 +3,9 @@
 FROM mcr.microsoft.com/dotnet/runtime:6.0 AS base
 WORKDIR /app
 
+ENV RABBITMQ_WAIT_TIME=15
+RUN echo "Waiting for RabbitMQ to start..." && sleep ${RABBITMQ_WAIT_TIME}
+
 FROM mcr.microsoft.com/dotnet/sdk:6.0 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
