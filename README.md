@@ -6,7 +6,9 @@ O sistema permite a realização de cadastro e consulta de protocolos para solicit
 - POST/ api/Protocols;
 - GET/ api/Protocols/filter;
 
-Após a aplicação estar rodando adequadamente os métodos poderão ser acessados através do endereço: http://localhost:32777/swagger/index.html
+Entretanto, para utilizar essas funcionalidades é necessário utilizar um token, que será gerado por um dos endponts da aplicação, disponível no swagger, que será explicado melhor a seguir.
+
+Após a aplicação estar rodando adequadamente no conteiner Docker os métodos poderão ser acessados através do endereço: http://localhost:32777/swagger/index.html
 
 ## Executando e utilizando a sua aplicação
 
@@ -30,7 +32,21 @@ Após esta etapa será necessário parar e rodar o conteiner do Consumer, realizand
 A fim de permitir a consulta dos protocolos existe a API, com uma interface simples de uso, chamada Swagger, através do qual é possível utilizar as funcionalidades expostas da API.
 Para tanto, acesse a [API](http://localhost:32777/swagger/index.html) e você terá acesso a dois tipos de consulta e uma opção de cadastro, conforme pode ser visto na imagem abaixo:
 ![Imagem](Images/api.png)
-Nesta tela você pode clicar em cada um dos métodos para utilizá-lo. Seguem algumas informações sobre os métodos disponíveis:
+
+Nesta página do Swagger você pode clicar em cada um dos métodos para utilizá-lo, conforme será explicado a seguir.
+
+Por questões de segurança, entretanto, antes de utilizar os métodos é necessário gerar um TOKEN, através de um login e senha. Para tanto, você utilizará o método POST/ api/Login e enviará como dados de login e senha os dados a seguir:
+--usuario: admin
+--senha: password
+Conforme segue na imagem a seguir:
+![Imagem](Images/login.png)
+
+Ao executar este método o usuário receberá um Bearer Token que ele deverá copiar e inserir na área de Authorize no topo da página, à direita. Ali ele inserirá este token com a palavra 'Bearer' na frente, conforme exemplo a seguir, e clicando em 'Authorize':
+![Imagem](Images/bearertoken.png)
+
+Agora sim, o usuário está autorizado a utilizar as funcionalidades da API de protocolos.
+
+Seguem algumas informações sobre os métodos disponíveis:
 
 - GET /api/Protocols
 Através deste método é possível consultar todos os protocolos cadastrados.
@@ -53,7 +69,4 @@ Através deste método é possível cadastrar um novo protocolo, preenchendo os camp
 }
 E assim, o usuário terá rodado a aplicação e utilizado as funcionalidades disponíveis.
 
-## Funcionalidades Planejadas
-Para o futuro breve serão lançadas funcionalidades de status do protocolo, bem como, a inclusão de acesso apenas através de TOKEN gerado pelo sistema.
-
-
+Com essas funcionalidades a aplicação atende seus requisitos mínimos e encontra-se disponível para utilização. Novas funcionalidades serão incluídas com o tempo e podem trazer oportunidades de novos negócios.
