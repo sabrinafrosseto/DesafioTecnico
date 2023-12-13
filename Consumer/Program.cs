@@ -36,6 +36,6 @@ static Logger CreateLogger()
     return new LoggerConfiguration()
                     .MinimumLevel.Information()                    
 					.WriteTo.Console()
-					.WriteTo.File(path: "Logs\\Log.txt", outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
+					.WriteTo.File(path: "Log.txt", outputTemplate: "[{Timestamp:HH:mm:ss} {Level:u3}] {Message:lj}{NewLine}{Exception}")
                     .CreateLogger();
 }

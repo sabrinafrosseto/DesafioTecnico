@@ -1,15 +1,26 @@
 ﻿using Domain.Entidades;
 using Publisher;
 
-var send = new Send();
-
-for (int i = 0; i < 10; i++)
+try
 {
-    var protocol = CreateProtocolModel();
-    send.SendMessage(protocol);
+    var send = new Send();
+
+    for (int i = 0; i < 1; i++)
+    {
+        var protocol = CreateProtocolModel();
+        send.SendMessage(protocol);
+    }
+
+    Console.WriteLine(" Press [enter] to exit.");
+
+    Console.ReadLine();
 }
-Console.WriteLine(" Press [enter] to exit.");
-Console.ReadLine();
+catch (Exception ex)
+{
+    Console.WriteLine(ex.Message);
+
+    Console.ReadLine();
+}
 
 static Protocol CreateProtocolModel()
 {

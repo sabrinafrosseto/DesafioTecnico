@@ -10,7 +10,7 @@ namespace Publisher
         public void SendMessage(Protocol protocol)
         {
             {
-                var factory = new ConnectionFactory { HostName = "localhost" };
+                var factory = new ConnectionFactory { HostName = "rabbit" };
 
                 using var connection = factory.CreateConnection();
 
