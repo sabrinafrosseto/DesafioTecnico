@@ -6,9 +6,9 @@ O sistema permite a realização de cadastro e consulta de protocolos para solicit
 - POST/ api/Protocols;
 - GET/ api/Protocols/filter;
 
-Entretanto, para utilizar essas funcionalidades é necessário utilizar um token, que será gerado por um dos endponts da aplicação, disponível no swagger, que será explicado melhor a seguir.
+Entretanto, para utilizar essas funcionalidades é necessário utilizar um token, que será gerado por um dos endpoints da aplicação, disponível no swagger, conforme será explicado melhor a seguir.
 
-Após a aplicação estar rodando adequadamente no conteiner Docker os métodos poderão ser acessados através do endereço: http://localhost:32777/swagger/index.html
+Após a aplicação estar rodando corretamente no conteiner Docker todoas as funcionalidades poderão ser acessadas através do endereço: http://localhost:32777/swagger/index.html
 
 ## Executando e utilizando a sua aplicação
 
@@ -22,8 +22,8 @@ Esta aplicação foi criada utilizando-se do NetCore 6.0, RabbitMQ e MySQL, rodand
 
 #### Criando base de dados
 A fim de garantir a existência de uma base de dados com informações foi criada uma funcionalidade que cria alguns protocolos automaticamente, assim, após estar com todos os conteineres rodando adequadamente, o ideal é executar novamente o publisher, para tanto, clique no botão de 'stop' do conteiner 'Publisher' e clique novamente no 'play'. Desta forma, o Publisher rodará as suas funcionalidades e publicará algumas mensagens para a fila do RabbitMQ. As mensagens estarão na fila e poderão ser vistas consultando: http://localhost:15672/ e logando com os dados:
--- usuário: guest
--- senha guest
+- usuário: guest
+- senha guest
 Você terá visão de uma tela similar esta abaixo, onde é possível ver a chegada de uma mensagem:
 ![Imagem](Images/docker.png)
 Após esta etapa será necessário parar e rodar o conteiner do Consumer, realizando o mesmo procedimento anterior, mas, agora no conteiner '*consumer*'. Ao fazer isso ele lerá as mensagens contidas nas filas do rabbitMQ e procederá com a criação de novos objetos 'protocolo' no banco de dados.
@@ -36,8 +36,8 @@ Para tanto, acesse a [API](http://localhost:32777/swagger/index.html) e você ter
 Nesta página do Swagger você pode clicar em cada um dos métodos para utilizá-lo, conforme será explicado a seguir.
 
 Por questões de segurança, entretanto, antes de utilizar os métodos é necessário gerar um TOKEN, através de um login e senha. Para tanto, você utilizará o método POST/ api/Login e enviará como dados de login e senha os dados a seguir:
---usuario: admin
---senha: password
+- usuario: admin
+- senha: password
 *Obs: Por ora, o login é único, entretanto, será trazida melhoria que garantirá o registro de novos usuários, devidamente cadastrados em um banco de dados, para geração de token individual.
 Conforme segue na imagem a seguir:
 ![Imagem](Images/login.png)
