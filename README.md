@@ -38,7 +38,8 @@ Nesta página do Swagger você pode clicar em cada um dos métodos para utilizá
 Por questões de segurança, antes de utilizar os métodos é necessário gerar um TOKEN, através de um login e senha. Para isso, você utilizará o método POST/ api/Login e enviará como dados de login e senha os dados a seguir:
 - usuario: admin
 - senha: password
-*Obs: Por ora, o login é único, entretanto, será trazida melhoria que garantirá o registro de novos usuários, devidamente cadastrados em um banco de dados, para geração de token individual.
+
+Obs: Por ora, o login é único, entretanto, será trazida melhoria que garantirá o registro de novos usuários, devidamente cadastrados em um banco de dados, para geração de token individual.
 Conforme segue na imagem a seguir:
 ![Imagem](Images/login.png)
 
