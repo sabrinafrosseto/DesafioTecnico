@@ -1,62 +1,62 @@
 # Cadastro de Protocolos
-###         _SolicitaÁ„o de Emiss„o de Documentos_
+###         _Solicita√ß√£o de Emiss√£o de Documentos_
 ## Funcionalidades
-O sistema permite a realizaÁ„o de cadastro e consulta de protocolos para solicitaÁ„o de emiss„o de documentos, conforme podemos identificar abaixo:
+O sistema permite a realiza√ß√£o de cadastro e consulta de protocolos para solicita√ß√£o de emiss√£o de documentos, conforme podemos identificar abaixo:
 - GET/ api/Protocols;
 - POST/ api/Protocols;
 - GET/ api/Protocols/filter;
 
-Entretanto, para utilizar essas funcionalidades È necess·rio utilizar um token, que ser· gerado por um dos endpoints da aplicaÁ„o, disponÌvel no swagger, conforme ser· explicado melhor a seguir.
+Entretanto, para utilizar essas funcionalidades √© necess√°rio utilizar um token, que ser√° gerado por um dos endpoints da aplica√ß√£o, dispon√≠vel no swagger, conforme ser√° explicado melhor a seguir.
 
-ApÛs a aplicaÁ„o estar rodando corretamente no conteiner Docker todoas as funcionalidades poder„o ser acessadas atravÈs do endereÁo: http://localhost:32777/swagger/index.html
+Ap√≥s a aplica√ß√£o estar rodando corretamente no conteiner Docker todoas as funcionalidades poder√£o ser acessadas atrav√©s do endere√ßo: http://localhost:32777/swagger/index.html
 
-## Executando e utilizando a sua aplicaÁ„o
+## Executando e utilizando a sua aplica√ß√£o
 
-Esta aplicaÁ„o foi criada utilizando-se do NetCore 6.0, RabbitMQ e MySQL, rodando em conteiner no Docker, para tanto, È necess·rio que o docker esteja configurado na sua m·quina, para tanto, sugiro a instalaÁ„o da vers„o mais atual do [Docker](https://www.docker.com/products/docker-desktop/). Com a instalaÁ„o concluÌda e o Docker devidamente funcional, segue o passo a passo para utilizaÁ„o da aplicaÁ„o:
+Esta aplica√ß√£o foi criada utilizando-se do NetCore 6.0, RabbitMQ e MySQL, rodando em conteiner no Docker, para tanto, √© necess√°rio que o docker esteja configurado na sua m√°quina, assim, sugiro a instala√ß√£o da vers√£o mais atual do [Docker Desktop](https://www.docker.com/products/docker-desktop/). Com a instala√ß√£o conclu√≠da e o Docker devidamente funcional, segue o passo a passo para utiliza√ß√£o da aplica√ß√£o:
 
-- Clone o projeto diretamente atravÈs do Visual Studio utilizando do cÛdigo https://github.com/sabrinafrosseto/desafiotecnico.git ou acessando o [repositÛrio do projeto](https://github.com/sabrinafrosseto/desafiotecnico) e realizando a clonagem do projeto pelo mÈtodo que melhor lhe convier.
+- Clone o projeto diretamente atrav√©s do Visual Studio utilizando do c√≥digo https://github.com/sabrinafrosseto/desafiotecnico.git ou acessando o [reposit√≥rio do projeto](https://github.com/sabrinafrosseto/desafiotecnico) e realizando a clonagem do projeto pelo m√©todo que melhor lhe convier.
 - Com o projeto devidamente clonado, execute no terminal, dentro do pasta do projeto, o comando: docker-compose up --build
-- Com isso, o projeto comeÁar· a rodar no Docker, com uma imagem similar a esta:
+- Com isso, o projeto come√ßar√° a rodar no Docker, com uma imagem similar a esta:
 ![Imagem](Images/app_running.png)
-- Caso alguns dos conteiners n„o esteja como "Running, clique no final de 'play' para executar o conteiner.
+- Caso alguns dos conteiners n√£o esteja como "Running", clique no bot√£o de 'play' na frente do conteiner para execut√°-lo.
 
 #### Criando base de dados
-A fim de garantir a existÍncia de uma base de dados com informaÁıes foi criada uma funcionalidade que cria alguns protocolos automaticamente, assim, apÛs estar com todos os conteineres rodando adequadamente, o ideal È executar novamente o publisher, para tanto, clique no bot„o de 'stop' do conteiner 'Publisher' e clique novamente no 'play'. Desta forma, o Publisher rodar· as suas funcionalidades e publicar· algumas mensagens para a fila do RabbitMQ. As mensagens estar„o na fila e poder„o ser vistas consultando: http://localhost:15672/ e logando com os dados:
-- usu·rio: guest
+A fim de garantir a exist√™ncia de uma base de dados com informa√ß√µes para utiliza√ß√£o do sistema foi criada uma funcionalidade que cria automaticamente alguns protocolos, assim, ap√≥s estar com todos os conteineres rodando adequadamente, o ideal √© executar novamente o publisher - para tanto, clique no bot√£o de 'stop' do conteiner 'Publisher' e clique novamente no 'play'. Desta forma, o Publisher rodar√° as suas funcionalidades e publicar√° algumas mensagens para a fila do RabbitMQ. As mensagens estar√£o na fila e poder√£o ser vistas consultando: http://localhost:15672/ e logando com os dados:
+- usu√°rio: guest
 - senha guest
-VocÍ ter· vis„o de uma tela similar esta abaixo, onde È possÌvel ver a chegada de uma mensagem:
+Voc√™ ter√° vis√£o de uma tela similar esta abaixo, onde √© poss√≠vel ver a chegada de uma mensagem:
 ![Imagem](Images/docker.png)
-ApÛs esta etapa ser· necess·rio parar e rodar o conteiner do Consumer, realizando o mesmo procedimento anterior, mas, agora no conteiner '*consumer*'. Ao fazer isso ele ler· as mensagens contidas nas filas do rabbitMQ e proceder· com a criaÁ„o de novos objetos 'protocolo' no banco de dados.
+Ap√≥s esta etapa pode ser necess√°rio parar e rodar o conteiner do Consumer, realizando o mesmo procedimento anterior, mas, agora no conteiner '*consumer*'. Ao fazer isso ele ler√° as mensagens contidas nas filas do rabbitMQ e proceder√° com a cria√ß√£o de novos objetos 'protocolo' no banco de dados.
 
 #### Consultando os dados gerados
-A fim de permitir a consulta dos protocolos existe a API, com uma interface simples de uso, chamada Swagger, atravÈs do qual È possÌvel utilizar as funcionalidades expostas da API.
-Para tanto, acesse a [API](http://localhost:32777/swagger/index.html) e vocÍ ter· acesso a dois tipos de consulta e uma opÁ„o de cadastro, conforme pode ser visto na imagem abaixo:
+A fim de permitir a consulta dos protocolos foi criada a API, com uma interface simples de uso, chamada Swagger, atrav√©s do qual √© poss√≠vel utilizar as funcionalidades expostas da API.
+Para tanto, acesse a [API](http://localhost:32777/swagger/index.html) e voc√™ ter√° acesso a dois tipos de consulta e uma op√ß√£o de cadastro, conforme pode ser visto na imagem abaixo:
 ![Imagem](Images/api.png)
 
-Nesta p·gina do Swagger vocÍ pode clicar em cada um dos mÈtodos para utiliz·-lo, conforme ser· explicado a seguir.
+Nesta p√°gina do Swagger voc√™ pode clicar em cada um dos m√©todos para utiliz√°-lo, conforme ser√° explicado a seguir.
 
-Por questıes de seguranÁa, entretanto, antes de utilizar os mÈtodos È necess·rio gerar um TOKEN, atravÈs de um login e senha. Para tanto, vocÍ utilizar· o mÈtodo POST/ api/Login e enviar· como dados de login e senha os dados a seguir:
+Por quest√µes de seguran√ßa, antes de utilizar os m√©todos √© necess√°rio gerar um TOKEN, atrav√©s de um login e senha. Para isso, voc√™ utilizar√° o m√©todo POST/ api/Login e enviar√° como dados de login e senha os dados a seguir:
 - usuario: admin
 - senha: password
-*Obs: Por ora, o login È ˙nico, entretanto, ser· trazida melhoria que garantir· o registro de novos usu·rios, devidamente cadastrados em um banco de dados, para geraÁ„o de token individual.
+*Obs: Por ora, o login √© √∫nico, entretanto, ser√° trazida melhoria que garantir√° o registro de novos usu√°rios, devidamente cadastrados em um banco de dados, para gera√ß√£o de token individual.
 Conforme segue na imagem a seguir:
 ![Imagem](Images/login.png)
 
-Ao executar este mÈtodo o usu·rio receber· um Bearer Token que ele dever· copiar e inserir na ·rea de Authorize no topo da p·gina, ‡ direita. Ali ele inserir· este token com a palavra 'Bearer' na frente, conforme exemplo a seguir, e clicando em 'Authorize':
+Ao executar este m√©todo o usu√°rio receber√° um Bearer Token que ele dever√° copiar e inserir na √°rea de 'Authorize' no topo da p√°gina, √† direita. Ali ele inserir√° este token com a palavra 'Bearer' na frente, conforme exemplo a seguir, e clicando em 'Authorize':
 ![Imagem](Images/bearertoken.png)
 
-Agora sim, o usu·rio est· autorizado a utilizar as funcionalidades da API de protocolos.
+Agora sim, o usu√°rio est√° autorizado a utilizar as funcionalidades da API de protocolos.
 
-Seguem algumas informaÁıes sobre os mÈtodos disponÌveis:
+Seguem algumas informa√ß√µes sobre os m√©todos dispon√≠veis:
 
 - GET /api/Protocols
-AtravÈs deste mÈtodo È possÌvel consultar todos os protocolos cadastrados.
+Atrav√©s deste m√©todo √© poss√≠vel consultar todos os protocolos cadastrados na base de dados.
 
 - GET /api/Protocols/filter
-AtravÈs deste mÈtodo È possÌvel consultar protocolos especÌficos utilizando como filtro os campos protocolNumber(N˙mero do Protocolo), RG ou CPF, conforme a preferÍncia do usu·rio, sendo obrigatÛria a utilizaÁ„o de apenas um deles.
+Atrav√©s deste m√©todo √© poss√≠vel consultar protocolos espec√≠ficos utilizando como filtro os campos protocolNumber(N√∫mero do Protocolo), RG ou CPF, conforme a prefer√™ncia do usu√°rio, sendo obrigat√≥ria a utiliza√ß√£o de apenas um deles.
 
 - POST /api/Protocols
-AtravÈs deste mÈtodo È possÌvel cadastrar um novo protocolo, preenchendo os campos da requisiÁ„o, conforme modelo abaixo, onde o usu·rio substituir· onde est· escrito *string* pelo dado correspondente, mantendo as aspas:
+Atrav√©s deste m√©todo √© poss√≠vel cadastrar um novo protocolo, preenchendo os campos da requisi√ß√£o, conforme modelo abaixo, onde o usu√°rio substituir√° onde est√° escrito *string* pelo dado correspondente, mantendo as aspas:
 {
   "numeroProtocolo": "string",
   "numeroViaDocumento": "string",
@@ -68,6 +68,6 @@ AtravÈs deste mÈtodo È possÌvel cadastrar um novo protocolo, preenchendo os camp
   "foto": "string",
   "ID": "string"
 }
-E assim, o usu·rio ter· rodado a aplicaÁ„o e utilizado as funcionalidades disponÌveis.
+E assim, o usu√°rio ter√° rodado a aplica√ß√£o e utilizado as funcionalidades dispon√≠veis.
 
-Com essas funcionalidades a aplicaÁ„o atende seus requisitos mÌnimos e encontra-se disponÌvel para utilizaÁ„o. Novas funcionalidades ser„o incluÌdas com o tempo e podem trazer oportunidades de novos negÛcios.
+Com essas funcionalidades a aplica√ß√£o atende seus requisitos m√≠nimos e encontra-se dispon√≠vel para utiliza√ß√£o. Novas funcionalidades ser√£o inclu√≠das com o tempo e podem trazer oportunidades de novos neg√≥cios.
