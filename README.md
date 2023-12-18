@@ -23,31 +23,21 @@ Esta aplicação foi criada utilizando-se do NetCore 6.0, RabbitMQ e MySQL, roda
 #### Criação do Banco de Dados e Tabela
 É importante a utilização do banco de dados MySQL e para criação da base de dados conforme utilizada no projeto é importante gerar o banco e a tabela no banco que for ser utilizado, e para tanto, segue o script que deve ser rodado no SGBD utilizado.
 
-create schema DesafioTecnico;
+'''create schema DesafioTecnico;
 
 Use DesafioTecnico;
 
 CREATE TABLE Protocols (
-
-    ProtocolNumber  TEXT,
-    
-    DocumentVersion TEXT (50),
-    
-    CPF             TEXT (11),
-    
-    PersonalId      TEXT (15),
-    
-    Name            TEXT (100),
-    
-    MotherName      TEXT (100),
-    
-    FatherName      TEXT (100),
-    
-    Image           TEXT,
-    
-    ID              INTEGER    PRIMARY KEY AUTO_INCREMENT
-    
-);
+    ProtocolNumber  TEXT,    
+    DocumentVersion TEXT (50),    
+    CPF             TEXT (11),    
+    PersonalId      TEXT (15),    
+    Name            TEXT (100),    
+    MotherName      TEXT (100),    
+    FatherName      TEXT (100),    
+    Image           TEXT,    
+    ID              INTEGER    PRIMARY KEY AUTO_INCREMENT    
+);'''
 
 #### Criando base de dados
 A fim de garantir a existência de uma base de dados com informações para utilização do sistema foi criada uma funcionalidade que cria automaticamente alguns protocolos, assim, após estar com todos os conteineres rodando adequadamente, o ideal é executar novamente o publisher - para tanto, clique no botão de 'stop' do conteiner 'Publisher' e clique novamente no 'play'. Desta forma, o Publisher rodará as suas funcionalidades e publicará algumas mensagens para a fila do RabbitMQ. As mensagens estarão na fila e poderão ser vistas consultando: http://localhost:15672/ e logando com os dados:
