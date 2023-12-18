@@ -25,7 +25,9 @@ Esta aplicação foi criada utilizando-se do NetCore 6.0, RabbitMQ e MySQL, roda
 
 ```sql
 CREATE schema DesafioTecnico;
+
 Use DesafioTecnico;
+
 CREATE TABLE Protocols (
     ProtocolNumber  TEXT,    
     DocumentVersion TEXT (50),    
