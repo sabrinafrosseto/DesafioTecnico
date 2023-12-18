@@ -24,17 +24,29 @@ Esta aplicação foi criada utilizando-se do NetCore 6.0, RabbitMQ e MySQL, roda
 É importante a utilização do banco de dados MySQL e para criação da base de dados conforme utilizada no projeto é importante gerar o banco e a tabela no banco que for ser utilizado, e para tanto, segue o script que deve ser rodado no SGBD utilizado.
 
 create schema DesafioTecnico;
+
 Use DesafioTecnico;
+
 CREATE TABLE Protocols (
+
     ProtocolNumber  TEXT,
+    
     DocumentVersion TEXT (50),
+    
     CPF             TEXT (11),
+    
     PersonalId      TEXT (15),
+    
     Name            TEXT (100),
+    
     MotherName      TEXT (100),
+    
     FatherName      TEXT (100),
+    
     Image           TEXT,
+    
     ID              INTEGER    PRIMARY KEY AUTO_INCREMENT
+    
 );
 
 #### Criando base de dados
